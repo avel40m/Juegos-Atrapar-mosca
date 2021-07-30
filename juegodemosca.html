@@ -1,0 +1,66 @@
+<head>
+    <link rel="stylesheet" href="css/ventana_modal.css">
+</head>
+
+<h1>Tocar la mosca 10 veces</h1>
+<div>
+    <p>Tiempo: <span id="minutos"></span> Min.
+        <span id="segundos"></span> Seg.
+        <span id="milisegundos"></span> Mil.</p>
+</div>
+<img src="imagen/mosca.jpg" alt="" id="mosca" style="width: 100px;margin: 100 0 0 100;margin-bottom: 30%;position: relative;" onclick="tocar()">
+<img src="imagen/iguana.jpg" alt="" style="width: 150px; bottom: 30; left: 40%; position: fixed; ">
+<p style="position: fixed; bottom: 30; left: 55%;font-size: 20px;">Puntajes: <span id="contador"></span></p>
+
+<script>
+    var movimiento = document.getElementById("mosca");
+    var myVar = setInterval(movement, 1000);
+    var margin = 0;
+
+    function movement() {
+        // con Math.floor hago que el número del parenteci lo devuelva en entero, math.random() genera números aleatorios
+        var posicionY = Math.floor(Math.random() * 100);
+        var positionX = Math.floor(Math.random() * 700);
+        // posicion X e y, hago que el objeto recorra un plano de cordenada
+        movimiento.style.top = posicionY + "px";
+        movimiento.style.left = positionX + "px";
+
+    }
+
+    contador = 1;
+
+    function tocar() {
+
+        document.getElementById("contador").innerHTML = contador;
+        if (contador > 9) {
+            clearInterval(myVar);
+            alert("has ganado!!!");
+            location.reload();
+        }
+        contador++;
+    }
+
+
+    setInterval(tiempo, 10);
+    min = 0;
+    seg = 0;
+    mili = 0;
+
+    function tiempo() {
+        mili++;
+        mili = document.getElementById("milisegundos").innerHTML = mili;
+        if (mili == 60) {
+            mili = 0;
+            seg++;
+            seg = document.getElementById("segundos").innerHTML = seg;
+
+            if (seg == 59) {
+                min++;
+                seg = 0;
+                document.getElementById("minutos").innerHTML = min;
+            }
+
+        }
+    }
+</script>
+
